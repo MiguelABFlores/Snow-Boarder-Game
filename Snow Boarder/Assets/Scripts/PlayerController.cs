@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] float torqueAmount = 10f;
+    Rigidbody2D r2bd;
     void Start()
     {
-        
+        r2bd = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetKey(KeyCode.LeftArrow)){
+            r2bd.AddTorque(torqueAmount);
+        } 
+        else if(Input.GetKey(KeyCode.RightArrow)){
+            r2bd.AddTorque(-torqueAmount);
+        }
     }
 }
