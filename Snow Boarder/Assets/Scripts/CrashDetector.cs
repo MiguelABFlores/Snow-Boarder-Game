@@ -5,10 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class CrashDetector : MonoBehaviour
 {
+    [SerializeField] float loadDelayHit = 0.5f;
+
     void OnTriggerEnter2D(Collider2D other) {
         if(other.tag == "Terrain"){
             Debug.Log("Ouch!");
-            SceneManager.LoadScene(0);
+            Invoke("ReloadScene", loadDelayHit);
         }
     }
+
+    void ReloadScene() {
+        SceneManager.LoadScene(0);
+    }
+
 }
